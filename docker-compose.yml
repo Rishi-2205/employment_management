@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Abhi@2003
+      POSTGRES_DB: Employe
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: .
+    ports:
+      - "8086:8086"
+    volumes:
+      - ./backend:/app
+      - ./frontend:/app/frontend
+    environment:
+      - TZ=UTC
+      - DATABASE_URL=postgresql://postgres:Abhi%402003@db:5432/Employe
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:80"
