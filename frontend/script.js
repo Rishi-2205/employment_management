@@ -1,4 +1,7 @@
-const API='http://127.0.0.1:8086';
+const API = window.location.hostname === 'localhost'
+  ? 'http://127.0.0.1:8086'
+  : 'https://employment-management-api.onrender.com';
+
 let accessToken=localStorage.getItem('token');
 
 document.addEventListener('DOMContentLoaded',()=>{
